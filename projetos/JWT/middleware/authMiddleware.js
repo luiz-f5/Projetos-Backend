@@ -11,9 +11,9 @@ exports.authenticateToken = (req, res, next) => {
   });
 };
 
-exports.authorizedRoles = (...allowedRoles) => {
+exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
-    if (!allowedRoles.includes(req.user.role)) {
+    if (!roles.includes(req.user.role)) {
       return res.status(403).json({ message: 'Acesso negado' });
     }
     next();
